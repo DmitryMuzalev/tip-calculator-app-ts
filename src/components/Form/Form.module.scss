@@ -1,0 +1,12 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  &Item {
+    &Title {
+      margin-bottom: 10px;
+    }
+    &Field {
+    }
+  }
+}
