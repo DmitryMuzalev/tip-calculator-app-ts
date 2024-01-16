@@ -1,66 +1,73 @@
 import styles from "./Form.module.scss";
+import { ReactComponent as DollarIcon } from "assets/icon-dollar.svg";
+import { ReactComponent as PersonIcon } from "assets/icon-person.svg";
 
 interface FormProps {}
 
 export const Form = ({}: FormProps) => {
   return (
     <form className={styles.form}>
-      <label htmlFor="bill" className={styles.formItem}>
-        <div className={styles.formItemTitle}>
-          <span>Bill</span>
-          <span className={styles.error}>Error</span>
+      <div className={styles.formGroup}>
+        <label htmlFor="bill" className={styles.formGroupTitle}>
+          Bill
+        </label>
+        <div className={styles.formInputWrapper}>
+          <input type="number" min={0} name="bill" id="bill" placeholder="0" />
+          <DollarIcon />
         </div>
-        <input
-          className={styles.formItemField}
-          type="text"
-          id="bill"
-          placeholder="0"
-        />
-      </label>
-      <div className={styles.formItem}>
-        <div className={styles.formItemTitle}>Select Tip %</div>
-        <ul>
-          <li>
-            <label htmlFor="tip5">
-              <input type="radio" value={5} id="tip5" name="selectTip" />
-              5%
-            </label>
-          </li>
-          <li>
-            <label htmlFor="tip5">
-              <input type="radio" value={10} id="tip5" name="selectTip" />
-              10%
-            </label>
-          </li>
-          <li>
-            <label htmlFor="tip5">
-              <input type="radio" value={15} id="tip5" name="selectTip" />
-              15%
-            </label>
-          </li>
-          <li>
-            <label htmlFor="tip5">
-              <input type="radio" value={25} id="tip5" name="selectTip" />
-              25%
-            </label>
-          </li>
-          <li>
-            <label htmlFor="tip5">
-              <input type="radio" value={50} id="tip5" name="selectTip" />
-              50%
-            </label>
-          </li>
-          <li>custom</li>
-          {/* custom */}
-        </ul>
       </div>
-      <label htmlFor="personCount" className={styles.formItem}>
-        <div className={styles.formItemTitle}>
-          <span>Number of People</span>
-          <span>Error</span>
+      <div className={styles.formGroup}>
+        <p className={styles.formGroupTitle}>Select Tip %</p>
+        <div className={styles.tipSelect}>
+          <div className={styles.tip}>
+            <input type="radio" name="tip" value={0.05} />
+            <div className={styles.tipBtn}>5%</div>
+          </div>
+          <div className={styles.tip}>
+            <input type="radio" name="tip" value={0.1} />
+            <div className={styles.tipBtn}>10%</div>
+          </div>
+          <div className={styles.tip}>
+            <input type="radio" name="tip" value={0.15} />
+            <div className={styles.tipBtn}>15%</div>
+          </div>
+          <div className={styles.tip}>
+            <input type="radio" name="tip" value={0.25} />
+            <div className={styles.tipBtn}>25%</div>
+          </div>
+          <div className={styles.tip}>
+            <input type="radio" name="tip" value={0.5} />
+            <div className={styles.tipBtn}>50%</div>
+          </div>
+          <div className={styles.tipCustom}>
+            <input
+              type="number"
+              min={0}
+              name="tip"
+              id="tipCustom"
+              placeholder="0"
+            />
+          </div>
         </div>
-        <input type="text" id="personCount" placeholder="0" />
-      </label>
+      </div>
+      <div className={styles.formGroup}>
+        <div className={styles.labelGroup}>
+          <label htmlFor="person" className={styles.formGroupTitle}>
+            Number of People
+          </label>
+          <span className={styles.error}>Can't be zero</span>
+        </div>
+        <div className={styles.formInputWrapper}>
+          <input
+            type="number"
+            min={0}
+            name="person"
+            id="person"
+            placeholder="0"
+          />
+          <PersonIcon />
+        </div>
+      </div>
     </form>
   );
 };

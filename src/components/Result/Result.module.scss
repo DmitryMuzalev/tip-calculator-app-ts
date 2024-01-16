@@ -1,4 +1,45 @@
 .result {
-  border-radius: 13px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.8rem;
   background-color: var(--cyan-500);
+  padding: 40px;
+
+  &Info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  &Row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--white);
+    span {
+      color: var(--cyan-300);
+      font-size: 0.7rem;
+    }
+  }
+  &Value {
+    color: var(--main-color);
+    font-size: 2rem;
+  }
+}
+
+.btnReset {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: var(--main-color);
+  color: var(--cyan-500);
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+  font-size: 1.5;
+  font-family: inherit;
+  font-weight: inherit;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  &:hover {
+    background-color: var(--main-color-hover);
+  }
 }

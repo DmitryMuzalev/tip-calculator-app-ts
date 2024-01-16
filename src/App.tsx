@@ -1,15 +1,12 @@
 import { Calculator } from "./components/Calculator";
 import { Container } from "./components/Container";
+import { ReactComponent as LogoIcon } from "assets/logo.svg";
 
 function App() {
   return (
     <>
       <Container>
-        <h1 className="title">
-          spli
-          <br />
-          tter
-        </h1>
+        <LogoIcon />
         <Calculator />
       </Container>
     </>

@@ -1,12 +1,110 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 45px;
-  &Item {
+  gap: 1.5rem;
+  &Group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
     &Title {
-      margin-bottom: 10px;
-    }
-    &Field {
+      color: var(--cyan-400);
     }
   }
+  &InputWrapper {
+    position: relative;
+    svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+}
+
+.labelGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+input[type="number"] {
+  color: var(--cyan-500);
+  width: 100%;
+  text-align: right;
+  padding: 0.3rem 0.5rem 0.3rem 2rem;
+  background-color: var(--cyan-100);
+  border: none;
+  border-radius: 0.2rem;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 1.5rem;
+
+  &::placeholder {
+    color: var(--cyan-300);
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus {
+    outline: none;
+    -webkit-box-shadow: 0px 0px 0px 2px rgba(38, 192, 171, 1);
+    -moz-box-shadow: 0px 0px 0px 2px rgba(38, 192, 171, 1);
+    box-shadow: 0px 0px 0px 2px rgba(38, 192, 171, 1);
+  }
+
+  &:invalid {
+    -webkit-box-shadow: 0px 0px 0px 2px rgba(195, 127, 111, 1);
+    -moz-box-shadow: 0px 0px 0px 2px rgba(195, 127, 111, 1);
+    box-shadow: 0px 0px 0px 2px rgba(195, 127, 111, 1);
+  }
+}
+
+.tip {
+  position: relative;
+
+  input[type="radio"] {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+  }
+
+  input[type="radio"]:checked + &Btn {
+    background-color: var(--main-color);
+    color: var(--cyan-500);
+  }
+  input[type="radio"]:hover + &Btn {
+    background-color: var(--main-color-hover);
+    color: var(--cyan-500);
+  }
+
+  &Select {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    @media (min-width: 767px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &Btn {
+    padding: 0.6rem;
+    background-color: var(--cyan-500);
+    border-radius: 0.4rem;
+    transition: 0.3s;
+    font-size: 1.5rem;
+    color: var(--white);
+    text-align: center;
+  }
+}
+
+.error {
+  color: var(--error);
 }
