@@ -1,8 +1,11 @@
 import styles from "./Result.module.scss";
 
-interface ResultProps {}
+interface ResultProps {
+  tipAmount: number;
+  total: number;
+}
 
-export const Result = ({}: ResultProps) => (
+export const Result = ({ tipAmount, total }: ResultProps) => (
   <div className={styles.result}>
     <div className={styles.resultInfo}>
       <div className={styles.resultRow}>

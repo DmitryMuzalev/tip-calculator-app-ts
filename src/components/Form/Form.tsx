@@ -1,18 +1,49 @@
 import styles from "./Form.module.scss";
 import { ReactComponent as DollarIcon } from "assets/icon-dollar.svg";
 import { ReactComponent as PersonIcon } from "assets/icon-person.svg";
+import { CbChanges } from "components/Calculator";
 
-interface FormProps {}
+interface FormProps {
+  bill: number;
+  percentage: number;
+  amountPersons: number;
+  changeBill: CbChanges;
+  changeAmountPersons: CbChanges;
+  changePercentage: CbChanges;
+}
 
-export const Form = ({}: FormProps) => {
+export const Form = ({
+  bill,
+  amountPersons,
+  percentage,
+  changeBill,
+  changeAmountPersons,
+  changePercentage,
+}: FormProps) => {
+  const handlerInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    cb: CbChanges
+  ) => {
+    const value = +e.target.value;
+    cb(value);
+  };
+
   return (
-    <form className={styles.form}>
+    <div className={styles.form}>
       <div className={styles.formGroup}>
         <label htmlFor="bill" className={styles.formGroupTitle}>
           Bill
         </label>
         <div className={styles.formInputWrapper}>
-          <input type="number" min={0} name="bill" id="bill" placeholder="0" />
+          <input
+            type="number"
+            min={0}
+            name="bill"
+            id="bill"
+            placeholder="0"
+            onChange={(e) => handlerInput(e, changeBill)}
+            value={bill}
+          />
           <DollarIcon />
         </div>
       </div>
@@ -43,9 +74,12 @@ export const Form = ({}: FormProps) => {
             <input
               type="number"
               min={0}
+              max={100}
               name="tip"
               id="tipCustom"
               placeholder="Custom "
+              onChange={(e) => handlerInput(e, changePercentage)}
+              value={percentage}
             />
           </div>
         </div>
@@ -64,10 +98,12 @@ export const Form = ({}: FormProps) => {
             name="person"
             id="person"
             placeholder="0"
+            onChange={(e) => handlerInput(e, changeAmountPersons)}
+            value={amountPersons}
           />
           <PersonIcon />
         </div>
       </div>
-    </form>
+    </div>
   );
 };
