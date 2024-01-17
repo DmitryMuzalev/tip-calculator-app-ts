@@ -1,9 +1,10 @@
 .result {
   display: flex;
   flex-direction: column;
-  border-radius: 0.8rem;
+  border-radius: 0.75rem;
   background-color: var(--cyan-500);
-  padding: 40px;
+  padding: 2.5rem 1.8rem 1.8rem 1.8rem;
+  gap: 3rem;
 
   &Info {
     flex-grow: 1;
@@ -11,15 +12,19 @@
     flex-direction: column;
     gap: 3rem;
   }
+
   &Row {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
     color: var(--white);
+
     span {
       color: var(--cyan-300);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
     }
   }
+
   &Value {
     color: var(--main-color);
     font-size: 2rem;
@@ -32,13 +37,14 @@
   border: none;
   background-color: var(--main-color);
   color: var(--cyan-500);
-  border-radius: 0.4rem;
-  padding: 0.4rem;
-  font-size: 1.5;
+  border-radius: var(--main-br);
+  padding: 0.3rem;
+  font-size: 1.5rem;
   font-family: inherit;
   font-weight: inherit;
   text-transform: uppercase;
   transition: all 0.3s;
+
   &:hover {
     background-color: var(--main-color-hover);
   }

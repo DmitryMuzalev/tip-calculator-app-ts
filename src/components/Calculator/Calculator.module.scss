@@ -1,8 +1,12 @@
 .calculator {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   background-color: var(--white);
-  border-radius: 1.8rem;
-  padding: 2rem;
+  border-radius: 1.5rem;
   gap: 2rem;
+  padding: 1.5rem;
+
+  @media (min-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
 }

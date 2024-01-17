@@ -45,7 +45,7 @@ export const Form = ({}: FormProps) => {
               min={0}
               name="tip"
               id="tipCustom"
-              placeholder="0"
+              placeholder="Custom "
             />
           </div>
         </div>
