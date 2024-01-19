@@ -1,1 +1,9 @@
-.customTipPercentage {}
+.customTipPercentage {
+  input[type="number"] {
+    padding: 0.5rem;
+
+    &::placeholder {
+      color: var(--cyan-500);
+    }
+  }
+}

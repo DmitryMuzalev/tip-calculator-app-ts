@@ -1,0 +1,21 @@
+.formBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &Label {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.2rem;
+    flex-wrap: wrap;
+  }
+}
+
+.title {
+  color: var(--cyan-400);
+}
+
+.error {
+  color: var(--error);
+}
