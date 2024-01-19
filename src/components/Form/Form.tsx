@@ -5,21 +5,28 @@ import { CustomTipPercentage } from "components/CustomTipPercentage";
 import { FormBlock } from "components/FormBlock";
 import { NumberField } from "components/NumberField";
 import { TipPercentage } from "components/TipPercentage";
+import { AppState } from "types";
 
 interface FormProps {
-  tipPercentageList: number[];
+  state: AppState;
 }
 
-export const Form = ({ tipPercentageList }: FormProps) => {
+export const Form = ({ state }: FormProps) => {
   return (
     <div className={styles.form}>
       <FormBlock id="bill" label="Bill">
-        <NumberField name="bill" placeholder="0" Icon={DollarIcon} />
+        <NumberField
+          name="bill"
+          placeholder="0"
+          Icon={DollarIcon}
+          value={state.bill}
+          cb={state.changeBill}
+        />
       </FormBlock>
 
       <FormBlock id="customTipPercentage" label="Select Tip %">
         <div className={styles.selectTipPercentage}>
-          {tipPercentageList.map((t, i) => {
+          {state.tipPercentageList.map((t, i) => {
             return <TipPercentage key={i} id={i} percent={t} />;
           })}
           <CustomTipPercentage />

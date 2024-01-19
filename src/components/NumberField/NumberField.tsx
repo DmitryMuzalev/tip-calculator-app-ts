@@ -6,23 +6,36 @@ interface NumberFieldProps {
   placeholder: string;
   Icon?: Icon;
   classes?: string;
+  value?: number | undefined;
+  cb?: (value: number | undefined) => void;
 }
 
 export const NumberField = ({
   name,
   placeholder,
+  value,
+  cb,
   Icon,
   classes,
-}: NumberFieldProps) => (
-  <div className={`${styles.numberField} ${classes ? classes : ""}`}>
-    <input
-      type="number"
-      className={styles.numberFieldInput}
-      min={0}
-      name={name}
-      id={name}
-      placeholder={placeholder}
-    />
-    {Icon && <Icon />}
-  </div>
-);
+}: NumberFieldProps) => {
+  return (
+    <div className={`${styles.numberField} ${classes ? classes : ""}`}>
+      <input
+        type="number"
+        className={styles.numberFieldInput}
+        min={0}
+        name={name}
+        id={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => {
+          console.log(e.target.value);
+          if (cb) {
+            cb(+e.target.value);
+          }
+        }}
+      />
+      {Icon && <Icon />}
+    </div>
+  );
+};

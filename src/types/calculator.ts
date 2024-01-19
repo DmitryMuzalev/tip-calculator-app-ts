@@ -5,3 +5,9 @@ export type Icon = React.FunctionComponent<
     title?: string | undefined;
   }
 >;
+
+export type AppState = {
+  bill: number | undefined;
+  changeBill: (value: number | undefined) => void;
+  tipPercentageList: number[];
+};
