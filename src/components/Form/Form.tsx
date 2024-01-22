@@ -27,14 +27,32 @@ export const Form = ({ state }: FormProps) => {
       <FormBlock id="customTipPercentage" label="Select Tip %">
         <div className={styles.selectTipPercentage}>
           {state.tipPercentageList.map((t, i) => {
-            return <TipPercentage key={i} id={i} percent={t} />;
+            return (
+              <TipPercentage
+                key={i}
+                id={i}
+                percent={t}
+                currPercentage={state.currPercentage}
+                changeCurrPercentage={state.changeCurrPercentage}
+                changeCustomTip={state.changeCustomTip}
+              />
+            );
           })}
-          <CustomTipPercentage />
+          <CustomTipPercentage
+            customTip={state.customTip}
+            changeCustomTip={state.changeCustomTip}
+          />
         </div>
       </FormBlock>
 
       <FormBlock id="numberPersons" label="Number of People">
-        <NumberField name="numberPersons" placeholder="0" Icon={PersonIcon} />
+        <NumberField
+          name="numberPersons"
+          placeholder="0"
+          Icon={PersonIcon}
+          value={state.persons}
+          cb={state.changeNumberPersons}
+        />
       </FormBlock>
     </div>
   );

@@ -4,10 +4,10 @@ import styles from "./NumberField.module.scss";
 interface NumberFieldProps {
   name: string;
   placeholder: string;
+  value: string;
+  cb: (value: string) => void;
   Icon?: Icon;
   classes?: string;
-  value?: number | undefined;
-  cb?: (value: number | undefined) => void;
 }
 
 export const NumberField = ({
@@ -29,9 +29,9 @@ export const NumberField = ({
         placeholder={placeholder}
         value={value}
         onChange={(e) => {
-          console.log(e.target.value);
+          const value = e.target.value;
           if (cb) {
-            cb(+e.target.value);
+            cb(value);
           }
         }}
       />

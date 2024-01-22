@@ -5,9 +5,18 @@ export type Icon = React.FunctionComponent<
     title?: string | undefined;
   }
 >;
+type changeFn<T extends string | number> = React.Dispatch<
+  React.SetStateAction<T>
+>;
 
 export type AppState = {
-  bill: number | undefined;
-  changeBill: (value: number | undefined) => void;
+  bill: string;
+  persons: string;
+  customTip: string;
+  currPercentage: number;
+  changeBill: changeFn<string>;
+  changeNumberPersons: changeFn<string>;
+  changeCustomTip: changeFn<string>;
+  changeCurrPercentage: changeFn<number>;
   tipPercentageList: number[];
 };
