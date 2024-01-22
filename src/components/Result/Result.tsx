@@ -22,6 +22,11 @@ export const Result = ({ bill, currPercentage, persons, cb }: ResultProps) => {
     }
   }, [bill, currPercentage, persons, tipAmount]);
 
+  const printUSD = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   return (
     <div className={styles.result}>
       <div className={styles.resultInfo}>
@@ -30,14 +35,14 @@ export const Result = ({ bill, currPercentage, persons, cb }: ResultProps) => {
             <p>Tip Amount</p>
             <span>/ person</span>
           </div>
-          <div className={styles.resultValue}>$0.00</div>
+          <div className={styles.resultValue}>{printUSD.format(tipAmount)}</div>
         </div>
         <div className={styles.resultRow}>
           <div className={styles.resultLabel}>
             <p>Total</p>
             <span>/ person</span>
           </div>
-          <div className={styles.resultValue}>$0.00</div>
+          <div className={styles.resultValue}>{printUSD.format(total)}</div>
         </div>
       </div>
       <button className={styles.btnReset} onClick={cb}>
