@@ -1,0 +1,15 @@
+.formLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  color: var(--cyan-400);
+}
+
+.error {
+  color: var(--error);
+}

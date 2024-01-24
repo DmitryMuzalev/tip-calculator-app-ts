@@ -1,14 +1,10 @@
-import { Icon } from "types";
 import styles from "./NumberField.module.scss";
-import { useState } from "react";
+import { FormInputProps } from "components/FormInput";
 
-interface NumberFieldProps {
-  name: string;
-  placeholder: string;
-  value: string;
-  cb: (value: string) => void;
-  Icon?: Icon;
+interface NumberFieldProps extends Omit<FormInputProps, "label"> {
   classes?: string;
+  hasError?: boolean;
+  validationCb?: (value: string) => void;
 }
 
 export const NumberField = ({
@@ -16,32 +12,18 @@ export const NumberField = ({
   placeholder,
   value,
   cb,
+  validationCb,
   Icon,
   classes,
+  hasError,
 }: NumberFieldProps) => {
-  const [hasError, setHasError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const validationFn = (value: string) => {
-    if (+value <= 100000 && +value > -1) {
-      if (cb) {
-        cb(value);
-        if (+value === 0 && value !== "") {
-          setHasError(true);
-          setErrorMessage("Can't be zero");
-        } else {
-          setHasError(false);
-          setErrorMessage("");
-        }
-      }
-    }
-  };
-
   return (
     <div className={`${styles.numberField} ${classes ? classes : ""}`}>
       <input
         type="number"
-        className={styles.numberFieldInput}
+        className={`${styles.numberFieldInput} ${
+          hasError ? styles.numberFieldInputError : ""
+        }`}
         min={0}
         name={name}
         id={name}
@@ -49,7 +31,12 @@ export const NumberField = ({
         value={value}
         onChange={(e) => {
           const value = e.target.value;
-          validationFn(value);
+          if (cb) {
+            if (validationCb) {
+              validationCb(value);
+            }
+            cb(value);
+          }
         }}
       />
       {Icon && <Icon />}

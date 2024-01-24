@@ -17,12 +17,17 @@
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+    flex-wrap: wrap;
     color: var(--white);
 
     span {
       color: var(--cyan-300);
       font-size: 0.75rem;
     }
+  }
+
+  &Label {
+    min-width: 100px;
   }
 
   &Value {

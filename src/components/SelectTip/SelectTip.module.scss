@@ -1,0 +1,22 @@
+.selectTip {
+}
+.selectTipPercentage {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+
+  @media (min-width: 767px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.customTipPercentage {
+  input[type="number"] {
+    padding: 0.5rem;
+
+    &::placeholder {
+      color: var(--cyan-500);
+    }
+  }
+}
