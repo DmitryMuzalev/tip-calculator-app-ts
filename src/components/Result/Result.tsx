@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
 import styles from "./Result.module.scss";
 
-interface ResultProps {
-  bill: number;
-  currPercentage: number;
-  persons: number;
-  cb: () => void;
-}
+import { useEffect, useState } from "react";
 
-export const Result = ({ bill, currPercentage, persons, cb }: ResultProps) => {
+import { useAppContext } from "hook/useAppContext";
+
+export const Result = () => {
   const [total, setTotal] = useState(0);
   const [tipAmount, setTipAmount] = useState(0);
 
+  const { bill, currPercentage, persons, resetCalculator } = useAppContext();
+
   useEffect(() => {
     if (bill && currPercentage && persons) {
-      setTipAmount((bill * currPercentage) / persons);
-      setTotal(bill / persons + tipAmount);
+      setTipAmount((+bill * currPercentage) / +persons);
+      setTotal(+bill / +persons + tipAmount);
     } else {
       setTipAmount(0);
       setTotal(0);
@@ -45,7 +43,7 @@ export const Result = ({ bill, currPercentage, persons, cb }: ResultProps) => {
           <div className={styles.resultValue}>{printUSD.format(total)}</div>
         </div>
       </div>
-      <button className={styles.btnReset} onClick={cb}>
+      <button className={styles.btnReset} onClick={resetCalculator}>
         reset
       </button>
     </div>

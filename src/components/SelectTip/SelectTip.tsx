@@ -1,25 +1,18 @@
 import styles from "./SelectTip.module.scss";
+
 import { FormLabel } from "components/FormLabel";
 import { TipPercentage } from "components/TipPercentage";
-import { AppState } from "types";
 import { NumberField } from "components/NumberField";
+
 import { useState } from "react";
 
-interface SelectTipProps
-  extends Omit<
-    AppState,
-    "bill" | "persons" | "changeBill" | "changeNumberPersons"
-  > {}
+import { useAppContext } from "hook/useAppContext";
 
-export const SelectTip = ({
-  tipPercentageList,
-  currPercentage,
-  changeCurrPercentage,
-  changeCustomTip,
-  customTip,
-}: SelectTipProps) => {
+export const SelectTip = () => {
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { tipPercentageList, customTip, setCustomTip } = useAppContext();
 
   const validationInput = (value: string) => {
     if (value !== "" && +value === 0) {
@@ -41,16 +34,7 @@ export const SelectTip = ({
       />
       <div className={styles.selectTipPercentage}>
         {tipPercentageList.map((t, i) => {
-          return (
-            <TipPercentage
-              key={i}
-              id={i}
-              percent={t}
-              currPercentage={currPercentage}
-              changeCurrPercentage={changeCurrPercentage}
-              changeCustomTip={changeCustomTip}
-            />
-          );
+          return <TipPercentage key={i} id={i} percent={t} />;
         })}
 
         <NumberField
@@ -58,7 +42,7 @@ export const SelectTip = ({
           placeholder="Custom"
           classes={styles.customTipPercentage}
           value={customTip}
-          cb={changeCustomTip}
+          cb={setCustomTip}
           validationCb={validationInput}
           hasError={hasError}
         />

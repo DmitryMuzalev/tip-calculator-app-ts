@@ -1,39 +1,35 @@
 import styles from "./Form.module.scss";
+
 import { ReactComponent as DollarIcon } from "assets/icon-dollar.svg";
 import { ReactComponent as PersonIcon } from "assets/icon-person.svg";
+
 import { FormInput } from "components/FormInput";
 import { SelectTip } from "components/SelectTip";
 
-import { AppState } from "types";
+import { useAppContext } from "hook/useAppContext";
 
-interface FormProps {
-  state: AppState;
-}
+export const Form = () => {
+  const { bill, setBill, persons, setPersons } = useAppContext();
 
-export const Form = ({ state }: FormProps) => {
   return (
     <div className={styles.form}>
       <FormInput
         name="bill"
         label="Bill"
-        cb={state.changeBill}
+        cb={setBill}
         placeholder="0"
-        value={state.bill}
+        value={bill}
         Icon={DollarIcon}
       />
-      <SelectTip
-        tipPercentageList={state.tipPercentageList}
-        currPercentage={state.currPercentage}
-        changeCustomTip={state.changeCustomTip}
-        changeCurrPercentage={state.changeCurrPercentage}
-        customTip={state.customTip}
-      />
+
+      <SelectTip />
+
       <FormInput
         name="numberPersons"
         label="Number of People"
-        cb={state.changeNumberPersons}
+        cb={setPersons}
         placeholder="0"
-        value={state.persons}
+        value={persons}
         Icon={PersonIcon}
       />
     </div>
